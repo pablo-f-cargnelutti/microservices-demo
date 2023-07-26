@@ -8,7 +8,7 @@ backoff==2.2.1
     # via opentelemetry-exporter-otlp-proto-grpc
 cachetools==5.3.1
     # via google-auth
-certifi==2023.5.7
+certifi==2023.7.22
     # via requests
 charset-normalizer==3.2.0
     # via requests
@@ -21,7 +21,7 @@ google-api-core[grpc]==2.11.1
     #   -r requirements.in
     #   google-api-python-client
     #   google-cloud-trace
-google-api-python-client==2.93.0
+google-api-python-client==2.95.0
     # via google-cloud-profiler
 google-auth==2.22.0
     # via
@@ -143,7 +143,7 @@ wrapt==1.15.0
     #   deprecated
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-grpc
-zipp==3.16.1
+zipp==3.16.2
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
