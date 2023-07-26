@@ -28,7 +28,7 @@
 steps:
   - name: gradle:8-jdk19
     entrypoint: gradle
-    args: ["test"]
+    args: ["test", "-i"]
   - name: gradle:8-jdk19
     entrypoint: gradle
     args: ["assemble"]

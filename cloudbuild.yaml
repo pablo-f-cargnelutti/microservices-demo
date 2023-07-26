@@ -31,6 +31,6 @@ steps:
   args:
   - -c
   - |
-     gcloud builds submit 'src/cartservice' --config 'src/cartservice/cloudbuild.yaml'
+     gcloud builds submit 'src/cartservice' --config 'src/cartservice/cloudbuild.yaml' && gcloud builds submit 'src/adservice' --config 'src/adservice/cloudbuild.yaml'
 # [END cloudbuild_microservice_demo_cloudbuild]
 
