@@ -46,7 +46,12 @@ dependencies {
         runtimeOnly "com.fasterxml.jackson.core:jackson-core:${jacksonCoreVersion}",
                 "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}",
                 "io.netty:netty-tcnative-boringssl-static:2.0.61.Final"
+
+      testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+
+      testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     }
+
 }
 
 protobuf {
@@ -108,6 +113,10 @@ task adServiceClient(type: CreateStartScripts) {
     classpath = startScripts.classpath
     defaultJvmOpts =
              ["-agentpath:/opt/cprof/profiler_java_agent.so=-cprof_service=adserviceclient,-cprof_service_version=1.0.0"]
+}
+
+test {
+  useJUnitPlatform()
 }
 
 applicationDistribution.into('bin') {
