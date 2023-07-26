@@ -26,11 +26,14 @@
 # `gcloud builds submit --config=cloudbuild.yaml --substitutions=_ZONE=us-central1-b,_CLUSTER=demo-app-staging .`
 
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/bash
-  args:
-  - -c
-  - |
-     gcloud builds submit 'src/cartservice' --config 'src/cartservice/cloudbuild.yaml' && gcloud builds submit 'src/adservice' --config 'src/adservice/cloudbuild.yaml'
-# [END cloudbuild_microservice_demo_cloudbuild]
+  - name: gradle:8-jdk19
+    entrypoint: gradle
+    args: ["test", "-i"]
+  - name: gradle:8-jdk19
+    entrypoint: gradle
+    args: ["assemble"]
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "asia-south1-docker.pkg.dev/vivid-ocean-386206/hbl-microservice-demo/adservice", "--build-arg=JAR_FILE=build/libs/adservice-1.0.0.jar", "."]
+images: ["asia-south1-docker.pkg.dev/vivid-ocean-386206/hbl-microservice-demo/adservice"]
 
+# [END cloudbuild_microservice_demo_cloudbuild]

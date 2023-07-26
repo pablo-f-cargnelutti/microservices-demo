@@ -81,6 +81,14 @@ public final class AdService {
     }
   }
 
+  public List<Integer> getRandomNumbers() {
+    List<Integer> nums = new ArrayList<>(MAX_ADS_TO_SERVE);
+    for (int i = 0; i < MAX_ADS_TO_SERVE; i++) {
+        nums.add(random.nextInt());
+    }
+    return nums;
+  }
+
   private static class AdServiceImpl extends hipstershop.AdServiceGrpc.AdServiceImplBase {
 
     /**
@@ -215,7 +223,7 @@ public final class AdService {
     logger.info("See https://github.com/GoogleCloudPlatform/microservices-demo/issues/422 for more info.");
 
     // TODO(arbrown) Implement OpenTelemetry tracing
-    
+
     logger.info("Tracing enabled - Stackdriver exporter initialized.");
   }
 

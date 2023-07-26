@@ -26,11 +26,11 @@
 # `gcloud builds submit --config=cloudbuild.yaml --substitutions=_ZONE=us-central1-b,_CLUSTER=demo-app-staging .`
 
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/bash
-  args:
-  - -c
-  - |
-     gcloud builds submit 'src/cartservice' --config 'src/cartservice/cloudbuild.yaml' && gcloud builds submit 'src/adservice' --config 'src/adservice/cloudbuild.yaml'
-# [END cloudbuild_microservice_demo_cloudbuild]
+  - name: mcr.microsoft.com/dotnet/sdk:7.0
+    entrypoint: dotnet
+    args: [ 'publish', 'src/cartservice.csproj', '-c', 'Release' ]
+  - name: mcr.microsoft.com/dotnet/sdk:7.0
+    entrypoint: dotnet
+    args: [ 'test', 'tests/cartservice.tests.csproj', '--verbosity', 'detailed']
 
+# [END cloudbuild_microservice_demo_cloudbuild]
